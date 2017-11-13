@@ -1,7 +1,11 @@
 package com.rongji.df.web.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
+import com.rongji.dfish.ui.Scrollable;
 import com.rongji.dfish.ui.form.Checkbox;
 import com.rongji.dfish.ui.form.Select;
 import com.rongji.dfish.ui.form.Text;
@@ -11,6 +15,8 @@ import com.rongji.dfish.ui.layout.ButtonBar;
 import com.rongji.dfish.ui.layout.HorizontalLayout;
 import com.rongji.dfish.ui.layout.VerticalLayout;
 import com.rongji.dfish.ui.layout.View;
+import com.rongji.dfish.ui.layout.grid.GridColumn;
+import com.rongji.dfish.ui.layout.grid.Tr;
 import com.rongji.dfish.ui.widget.Button;
 import com.rongji.dfish.ui.widget.Html;
 import com.rongji.dfish.ui.widget.Split;
@@ -49,6 +55,7 @@ public class UserManagerView {
 		root.add(buttonBar,"28");
 		fillCommands(view);
 		GridPanel grid = new GridPanel("user_grid");
+		fillGrid(grid);
 		
 		root.add(grid,"*");
 				
@@ -84,6 +91,36 @@ public class UserManagerView {
 	public void fillCommands(View view)
 	{
 		
+	}
+	
+	public void fillGrid(GridPanel grid)
+	{
+		grid.setCls("grid_panel");
+		List<Object[]> datas = new ArrayList<Object[]>();
+		
+		grid.setScroll(true);
+		grid.setEscape(false);
+		grid.setScrollClass(Scrollable.SCROLL_AUTO);
+		grid.setFocusable(true);
+		grid.setNobr(true);
+		grid.setResizable(true);
+		grid.setFace("line");
+		grid.setGridData(datas);
+		grid.addColumn(GridColumn.hidden(0, "userId"));
+		grid.addColumn(new GridColumn(11,"index","序号","40"));
+		grid.addColumn(new GridColumn(1,"status","状态","60"));
+		grid.addColumn(new GridColumn(2,"loginName","账号","100"));
+		grid.addColumn(new GridColumn(3,"empName","姓名","100"));
+		grid.addColumn(new GridColumn(4,"sex","性别","60"));
+		grid.addColumn(new GridColumn(5,"depart","所属部门","160"));
+		grid.addColumn(new GridColumn(6,"jobTitle","职务","150"));
+		grid.addColumn(new GridColumn(7,"roleName","角色","*"));
+		grid.addColumn(new GridColumn(8,"tel","电话","110"));
+		grid.addColumn(new GridColumn(9,"useStatu","启用/禁用","100"));
+		grid.addColumn(GridColumn.hidden(10, "depId"));
+		
+		grid.setPub(new Tr().setOn(GridPanel.EVENT_DBLCLICK,"VM(this).cmd('showUser',$userId)"));
+		grid.getPrototype().getThead().setCls("grid_panel_head");
 	}
 	
 	public void buildDeptTree(TreePanel tree,String str)
