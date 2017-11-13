@@ -1,0 +1,86 @@
+@charset "utf-8";
+/*初始化样式*/
+html,body{height:100%;}
+html,body,ul,ol,li,h1, h2, h3, h4, h5, h6,form,blockquote,dl,dt,dd,table,center,input,button,select,textarea,img{ margin:0; padding:0;}
+body {font:14px/18px 'Microsoft YaHei',Arial,Helvetica; padding:0 15px; color:#333; text-align:center; background:#fff; overflow:hidden;}
+ul,ol,li{list-style:none;}
+h1, h2, h3, h4, h5, h6,font,table,td{font-size:100%;}
+
+input{font:14px/18px 'Microsoft YaHei',Arial,Helvetica; border:1px; color:#999; background:none; display:block; margin:0 auto; outline:none; text-align:center;}
+input:focus,input:hover{ border-left:2px solid #2498fd; color:#2498fd;border-right:2px solid #2498fd; margin:0 -2px;}
+
+
+a{text-decoration:none; color:#333; cursor:pointer;}
+a:hover{ color:#2498fd;}
+
+em,i,font{transition:all 0.2s ease-in-out; overflow:hidden;}
+
+.hidd{ overflow:hidden;}
+.cle{clear:both; display:block; height:1px; overflow:hidden; line-height:1px;}
+.lef{float:left; display:inline;}
+.rig{float:right; display:inline;}
+.t_lef{ text-align:left;}
+.t_rig{ text-align:right;}
+.t_cen{ text-align:center;}
+
+.h_20{ height:20px;}
+.h_10{ height:10px;}
+
+.w_90{ width:90px;}
+.w_h_100{ height:100%; width:100%; overflow:hidden;}
+.w01{ width:1%;}
+.w_14{ width:14px;}
+.w_40{ width:30px;}
+
+
+table{border-collapse:collapse;}
+tr.tr_bg2{ background:#f6f8fa;}
+td tr:hover,td tr.tr_bg2:hover{ background:#eaeff4;}
+th{font-weight:normal; padding:8px 4px; color:#fff; background:#2498fd; border:1px solid #fff;}
+td{ padding:6px 4px; border:1px solid #d9e0e7;}
+td input{ position:relative; z-index:20; line-height:18px; height:18px; _margin:0 -8px; width:100%;}
+.h1 th{ min-width:36px;}
+.h1 th.th_fff{ min-width:0;}
+th.th_fff,td.th_fff{ background:#fff; padding:0; border-bottom:0; overflow:hidden; width:1px;}
+tr.tr_fff td{ background:#fff; padding:0; border-left:0; overflow:hidden; height:1px;}
+.padding0{ padding:0; border:0;}
+.h1 th,.h2 th{ padding:0; border:none; height:0;}
+.h18 td,.h18 th{ padding-top:2px; padding-bottom:2px;}
+.h_one th{ padding-top:16px;  padding-bottom:16px;}
+
+.top{ z-index:10; line-height:40px; height:40px; box-shadow:0 1px 3px rgba(0,0,0,.05); border-bottom:1px solid #eee; position:fixed; _position:absolute; top:0; left:0; width:100%; background:#fff;}
+.top span{ padding:0 15px;}
+.top span.lef{ color:#bbb; cursor:pointer;}
+.top span.lef em{ background:#bbb; border-radius:50%; width:14px; line-height:14px; height:14px; float:left; margin:13px 4px 0 0;}
+.top a{ line-height:28px; float:left; margin:5px 0 0 5px; padding:0 15px; border:1px solid #ddd; box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.top span.hover{ color:#2498fd;}
+.top span.hover em{ background:#2498fd;}
+.top a:hover{ background:#f3f3f3;}
+.top a.hover{ background:#2498fd; border:1px solid #2498fd; color:#fff;}
+.top a.hover:hover{ background:#1c8cf0; border:1px solid #1c8cf0;}
+
+
+h3{ height:136px; padding:0 2px; overflow:hidden;}
+h3 b{ font-weight:normal; display:block; padding-top:60px; line-height:46px; font-size:24px; color:#2498fd;}
+h3 span{ display:block; font-weight:normal; text-align:left;}
+h3 span font{ float:right;}
+td.bg_lef{ background:#e9eff5; border-color:#fff; padding:6px 8px;}
+.tab_cen tr td:first-child{ border-left-color:#fff;}
+em.one{ display:block; float:left; z-index:10; width:100%; height:3px; position:absolute; z-index:20; top:-1px; left:0; background:#2498fd; overflow:hidden;}
+em.one.h100{ width:3px; height:100%; left:-1px; top:0;}
+em.two{display:block; float:left; z-index:10; width:100%; height:3px; position:absolute; z-index:20; top:-1px; left:0; background:#e9eff5; overflow:hidden;}
+em.two.h100{ width:3px; height:100%; left:-1px; top:0;}
+.h_tr2 em.two{ height:61px;}
+.rig_foot{ border-bottom:0; background:#fff;}
+.rig_foot div{ padding:12px; clear:both; overflow:hidden; border-top:1px dashed #ccc;}
+.rig_foot div.bor0{ border-top:0;}
+.rig_foot p{ margin:0; float:left; padding:6px 0; clear:left;}
+.rig_foot span{ float:left; white-space:nowrap; padding:6px 2px 6px 0;}
+.rig_foot font{ background:#2498fd; color:#fff; padding:0 4px; margin:0 4px; font-size:16px;}
+.rig_foot input{ vertical-align:middle; width:40px; display:inline-block; display:inline; line-height:16px; height:16px; margin:0 4px; border:1px solid #eee; background:#fff;}
+.rig_foot input:focus,.rig_foot input:hover{border:1px solid #2498fd; color:#2498fd}
+.rig_foot dl{}
+.rig_foot dl dt{}
+.rig_foot dl dd{ display:block; padding-left:28px; clear:both;}
+
+

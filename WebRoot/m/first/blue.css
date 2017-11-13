@@ -1,0 +1,534 @@
+/* blue */
+
+/*TODO 2017-5-31 项目自定义，修改AlbumLayout图片菜单相关风格*/
+.w-album-ynbiq{text-align:justify;}
+.w-img{position:relative;text-align:center;margin-left:6px;}
+.w-album-ynbiq .w-img{position:relative;padding:5px;border:1px solid transparent;border-radius:2px;}
+.w-album-ynbiq .w-img.z-hv{background-color:#73a5dd;}
+.w-album-ynbiq .w-img.z-on{border-color:#6FD3FF;background-color:#73a5dd;box-shadow:0 2px 2px 0 #6FD3FF;}
+.w-album-ynbiq .w-img.z-hv .w-img-box,.w-album .w-img.z-on .w-img-box{display:inline-block}
+.w-album-ynbiq.z-face-straight .w-img ._t{padding-left:10px;margin-top:0;display:inline-block;text-align:left;vertical-align:middle;*display:inline;*zoom:1}
+.w-album-ynbiq.z-face-straight ._s{font-size:14px;line-height:2}
+
+/* 三级菜单样式 */
+.three_menu_bar_class .three_menu_class {
+	height: 26px;
+	position: relative;
+	top: 4px;
+	border: 1px solid #96c3d8;
+	float: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	margin-left: 5px;
+	background: -webkit-linear-gradient(#ffffff, #d3ebff);
+	background: -o-linear-gradient(#ffffff, #d3ebff);
+	background: -moz-linear-gradient(#ffffff, #d3ebff);
+	background: linear-gradient(#ffffff, #d3ebff);
+	background-image:url(img/menu_normal.png);
+	background-repeat:repeat-x;
+}
+
+.three_menu_bar_class .three_menu_class:hover {
+	background: -webkit-linear-gradient(#e5f0fe, #ffffff);
+	background: -o-linear-gradient(#e5f0fe, #ffffff);
+	background: -moz-linear-gradient(#e5f0fe, #ffffff);
+	background: linear-gradient(#e5f0fe, #ffffff);
+	background:url(img/menu_hover.png) repeat-x;
+}
+
+.three_menu_bar_class .three_menu_class:active {
+	background: -webkit-linear-gradient(lightblue, #ffffff);
+	background: -o-linear-gradient(lightblue, #ffffff);
+	background: -moz-linear-gradient(lightblue, #ffffff);
+	background: linear-gradient(lightblue, #ffffff);
+}
+.three_menu_bar_class {
+	position: relative;
+	/* top: 100px; */
+	min-width: 768px;
+	border-bottom: 1px solid #96c3d8;
+	height: 31px;
+	background: -webkit-linear-gradient(#c0e6f0, #e6f0ff);
+	background: -o-linear-gradient(#c0e6f0, #e6f0ff);
+	background: -moz-linear-gradient(#c0e6f0, #e6f0ff);
+	background: linear-gradient(#c0e6f0, #e6f0ff);
+}
+.three_menu_bar_class .three_menu_check{
+	height:26px;
+	position:relative;top:4px;
+	border:1px solid #96c3d8;float:left;
+	padding-left:15px;padding-right:15px;margin-left:5px;
+	background: -webkit-linear-gradient(lightblue, #ffffff); 
+	background: -o-linear-gradient(lightblue, #ffffff);
+	background: -moz-linear-gradient(lightblue, #ffffff);
+	background: linear-gradient(lightblue, #ffffff);
+	background:url(img/menu_checked.png) repeat-x;
+}
+.three_menu_bar_class .three_menu_check:hover {
+	background: -webkit-linear-gradient(#e5f0fe, #ffffff);
+	background: -o-linear-gradient(#e5f0fe, #ffffff);
+	background: -moz-linear-gradient(#e5f0fe, #ffffff);
+	background: linear-gradient(#e5f0fe, #ffffff);
+	background:url(img/menu_hover.png) repeat-x;
+}
+.three_menu_bar_class .three_menu_name {
+	position: relative;
+	top: 5px;
+	/* font-family: Courier, "Courier New", monospace;
+	font-size: 14px; */
+}
+
+/* 根面板样式 */
+.index_view{
+	background-color:#ffffff;
+	border:1px solid lightgray;
+}
+
+/* Split 样式 */
+.split_view{
+	background-color:#e6f0ff;
+}
+
+/* HorizontalLayout 样式*/
+.horizontal_Layout{
+	background-color:#ffffff;
+    margin:10px 10px 10px 10px;
+}
+
+/* VerticalLayout 样式*/
+.vertical_Layout{
+	background-color:#ffffff;
+    margin:10px 10px 10px 10px;
+}
+
+/**/
+.search_panel{
+	margin-left:10px;margin-right:10px;margin-bottom:10px;
+}
+/* 顶部按钮面板布局 */
+.t_bar{
+	margin-left: 0px;
+	margin-right: 10px;
+	margin-top : 2.5px;
+	margin-bottom : 2.5px;
+}
+
+/* 底面按钮面板布局 */
+.b_bar{
+	margin-left: 0px;
+	margin-right: 10px;
+	margin-top : 0px;
+	margin-bottom : 30px;
+}
+
+/* 正常按钮样式 */
+.normal_button{
+	background-color : #40b2dd;
+	height:28px;
+	width : 80px;
+	/*border:1px solid red;*/
+	border-radius:2px;
+	background:#40b2dd;
+	color:#ffffff;
+	font-size : 14px;
+	font-family: "Microsoft YaHei";
+	margin-right: 10px;
+}
+
+.normal_button:hover {
+    background-color: #068dc1; /* Green */
+    color: white;
+}
+
+/* 取消按钮样式 */
+.cancle_button{
+	height:28px;
+	width : 80px;
+	/*border:1px solid red;*/
+	border-radius:2px;
+	background:  	#989898;
+	color:#ffffff;
+	font-size : 14px;
+	font-family: "Microsoft YaHei";
+	margin-right: 2.5px;
+	margin-left: 2.5px;
+}
+
+.cancle_button:hover {
+    background-color:  	#707070; /* Green */
+    color: white;
+}
+
+/* 待处理按钮样式 */
+.wait_button{
+	height:28px;
+	width : 80px;
+	/*border:1px solid red;*/
+	border-radius:2px;
+	background:  	#ff3300;
+	color:#ffffff;
+	font-size : 14px;
+	font-family: "Microsoft YaHei";
+	margin-right: 2.5px;
+	margin-left: 2.5px;
+}
+
+.wait_button:hover {
+    background-color:  	#cc0000; /* Green */
+    color: white;
+}
+/* 不可用按钮样式 */
+.disable_button{
+	background-color : #ececec;
+	height:28px;
+	width : 80px;
+	/*border:1px solid red;*/
+	border-radius:2px;
+	background:#ececec;
+	color:#ffffff;
+	font-size : 14px;
+	font-family: "Microsoft YaHei";
+	margin-right: 2.5px;
+	margin-left: 2.5px;
+	
+}
+
+/* GridLayoutFormPanel 样式*/
+.grid_layout{
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top : 2.5px;
+	margin-bottom : 2.5px;
+}
+
+/*GridPanel 表头样式*/
+.grid_panel{
+	background:#fff;
+}
+
+.grid_panel .z-0 {
+	background-color: #FFF;
+}
+
+.grid_panel .z-1 {
+	background-color: #F8F8F8;
+}
+
+.grid_panel .w-tr.z-on{ 
+	background-color: #B0D3EB;
+}
+
+.grid_panel .w-grid-tbody .w-tr:hover {
+	background-color: #CCE3F2;
+}
+
+.grid_panel_head{
+	background-image:url(img/t_b_2.gif);
+	background-repate:repate-x;
+	/* background:#d9e7f0; */
+	border:1px solid #d9e7f0;
+}
+ 
+.grid_panel_head2{
+	background-image:url(img/t_b_2.gif);
+	background-repate:repate-x;
+	background-size: 40px;
+	border:1px solid #d9e7f0;
+}
+
+/* 默认的select */
+.normal_select{
+	height : 28px;
+	display:inline-block;
+}
+.normal_select select{
+	padding:0;
+	border:0;
+	background-color:#ffffff;
+}
+
+/* 必输的select */
+.required_select{
+	display:inline-block;
+	height : 28px;
+	background-color:#d1edb9;
+}
+.required_select select{
+	padding:0;
+	border:0;
+	background-color:#d1edb9;
+}
+
+/* 只读的select */
+.readonly_select{
+	display:inline-block;
+	height : 28px;
+}
+.readonly_select select{
+	padding:0;
+	border:0;
+	height : 28px;
+	background-color:#ececec;
+}
+
+/* 输入框正常样式 */
+.normal_input{
+	background-color : #ffffff;
+	color: #cccccc;
+	height : 28px;
+}
+
+/* 输入框必填样式 */
+.required_input{
+	background-color : #d1edb9;
+	color: #cccccc;
+	height : 28px;
+}
+/* 输入框只读样式 */
+.readonly_input{
+	background-color : #ececec;
+	color: #cccccc;
+	height : 28px;
+}
+
+
+/**
+管理中心皮肤
+**/
+.x-nav-title {
+	background-color: #2498FD;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+}
+
+.x-tab-bar {
+	height: 42px;
+}
+
+.x-tab-bar .w-buttonbar-line {
+	display: block;
+	height: 2px;
+	background: #2898fd;
+}
+
+.x-tab {
+	background: #EEE;
+	margin-right: 3px;
+	color: #333333;
+}
+
+.x-tab.z-on {
+	background: #2898fd;
+	color: #fff;
+}
+
+.x-text-highlight {
+	color: #F08A24;
+}
+
+.x-right-top {
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #ddd;
+}
+
+.x-right-top .x-right-title {
+	margin: 15px 0;
+	height: 20px;
+	line-height: 20px;
+	font-size: 18px;
+	border-left: 3px solid #2898fd;
+	padding-left: 5px;
+}
+
+.x-right-top .x-right-title .x-right-remark {
+	font-size: 14px;
+}
+
+.x-process {
+	margin: 5px 5px 0px 0px;
+	background: #DDD;
+	height: 10px;
+	line-height: 10px;
+	border-radius: 6px;
+}
+
+.x-process .x-process-on {
+	height: 10px;
+	background: #f08a24;
+	border-radius: 6px;
+}
+
+.x-btn {
+	height: 28px;
+	min-width: 56px;
+	font-size: 14px;
+	background: #FFF;
+	border: 1px solid #DDD;
+}
+
+.x-btn.x-btn-main,.w-alert .x-btn.w-submit {
+	background: #2498FD;
+	color: #FFF;
+}
+
+.x-btn.x-btn-main.z-ds {
+	background: #fff;
+	color: #aaa;
+}
+
+.x-btn.x-btn-main .f-arw {
+	border-top-color: #fff;
+}
+
+.x-btn.x-btn-main.z-ds .f-arw {
+	border-top-color: #aaa;
+}
+
+.x-main-title {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.x-grid-head {
+	/* background-color: red; */
+	background-image:url(img/t_b_2.gif);
+	background-repate:repate-x;
+}
+
+.x-grid-odd .z-0 {
+	background-color: #FFF;
+}
+
+.x-grid-odd .z-1 {
+	background-color: #F8F8F8;
+}
+
+.x-grid-odd .w-tr.z-on{ 
+	background-color: #B0D3EB;
+}
+
+.x-grid-odd .w-grid-tbody .w-tr:hover {
+	background-color: #CCE3F2;
+}
+
+.x-pagebar ._o{
+	border-color:#ddd;
+	cursor:not-allowed;
+}
+.x-pagebar ._o.z-us{
+	cursor: pointer;
+	color: #333;
+}
+.x-pagebar ._o.z-us:hover{
+	border-color:#ddd;
+	color: white;
+	background: #2898FD;
+}
+.x-pagebar ._o._cur{
+	cursor: pointer;
+	color: white;
+	background: #2898FD;
+}
+
+.login-btn-icon{
+	width:216px;
+	height:38px;
+	background:url(img/login_btn_2.png);
+}
+
+.w-button.z-hv .login-btn-icon{
+	width:216px;
+	height:38px;
+ 	background:url(img/login_btn_h_2.png);
+}
+
+/**toggle**/
+.x-tog-b {
+	border-bottom: 1px dashed #DDD;
+	color: #2898fd;
+	font-size: 16px;
+	height: 32px;
+	line-height: 32px;
+}
+.x-tog-b ._ico-b{margin-left:10px}
+.x-tog-icon-b {
+	width: 16px;
+	height: 16px;
+	background: url("./img/btn-icon.png") -29px -265px;
+}
+.x-tog-openicon-b {
+	width: 16px;
+	height: 16px;
+	background: url("./img/btn-icon.png") -29px -246px;
+}
+/**toggle**/
+/**快捷菜单的样式**/
+.channel_menu_div{
+	height:100%;margin:5px;overflow-y:auto;
+}
+.channel_menu_div .channel_menu_cls{
+	float:left;
+	width:60px;
+	height:60px;
+	margin:4px;
+	padding:0px;
+	border:1px solid #D3D3D3;
+}
+.channel_menu_div .channel_menu_cls :hover{
+	background-color:#B9DCFF;
+}
+/* 翻页按钮样式 */
+.my-page-btn-normal{
+	width:44px;
+	height: 25px;
+	text-align:center;
+	font-size: 12px;
+	background: #FFFFFF;
+	border: 1px solid #D3D3D3;
+}
+.my-page-btn-normal:hover{
+	color:#3E89FA;
+	border: 1px solid #3E89FA;
+}
+.my-page-btn-disable{
+	width:44px;
+	height: 25px;
+	text-align:center;
+	font-size: 12px;
+	color:#888888;
+	background: #FFFFFF;
+	border: 1px solid #D3D3D3;
+}
+.my_page_go_btn{
+	height:26px;
+	width : 30px;
+	background:#3E89FA;
+	border:1px solid #3E89FA;
+	text-align:center;
+	color:#ffffff;
+	font-size : 12px;
+}
+.my_page_go_btn1{
+	height:24px;
+	width : 30px;
+	background:#FAFAFA;
+	text-align:center;
+	color:#A7A7A7;
+	border:1px solid #D3D3D3;
+	font-size : 12px;
+}
+.my_page_input_1{
+	width:30px;
+	height:28px;
+	border:1px solid #D3D3D3;
+	border-right:none;
+}
+.my_page_input_2{
+	width:30px;
+	height:28px;
+	border:1px solid #3E89FA;
+	border-right:none;
+}
+/* ======翻页按钮结束 */

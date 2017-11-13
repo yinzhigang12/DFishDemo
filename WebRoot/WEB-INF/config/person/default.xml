@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- the default personal config file -->
+<person>
+  <!-- the page style -->
+  <pageStyle>default</pageStyle>
+  <style></style>
+  <color></color>
+  <rows_per_page>10</rows_per_page>
+</person>
+

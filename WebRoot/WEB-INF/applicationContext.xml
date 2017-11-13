@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tool="http://www.springframework.org/schema/tool" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd 
+         http://www.springframework.org/schema/tx 
+         http://www.springframework.org/schema/tx/spring-tx.xsd 
+         http://www.springframework.org/schema/aop 
+         http://www.springframework.org/schema/aop/spring-aop.xsd 
+         http://www.springframework.org/schema/jee 
+         http://www.springframework.org/schema/jee/spring-jee.xsd 
+         http://www.springframework.org/schema/context 
+         http://www.springframework.org/schema/context/spring-context.xsd 
+         http://www.springframework.org/schema/util 
+         http://www.springframework.org/schema/util/spring-util.xsd 
+         http://www.springframework.org/schema/tool 
+         http://www.springframework.org/schema/tool/spring-tool.xsd"
+	default-lazy-init="true">
+	
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/application.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<import resource="applicationContext-mvc.xml"/>
+
+	<!--配置ynbiq数据源 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>${jdbc.driverClassName}</value>
+		</property>
+		<property name="url">
+			<value>${jdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${jdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${jdbc.password}</value>
+		</property>
+		<property name="validationQuery" value="SELECT 1 from dual" />
+	</bean>
+	<!-- hibernate.cfg.xml Spring config -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+
+		<!-- hibernate自身属性 -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.cache.use_minimal_puts">true</prop>
+				<prop key="hibernate.max_fetch_depth">2</prop>
+				<prop key="hibernate.default_batch_fetch_size">8</prop>
+				<prop key="hibernate.order_updates">true</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.use_outer_join">true</prop>
+				<prop key="hibernate.jdbc.fetch_size">60</prop>
+				<prop key="hibernate.jdbc.batch_size">40</prop>
+				<prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+				<prop key="hibernate.cglib.use_reflection_optimizer">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop><!-- 开启二级缓存,默认就是开启状态 -->
+<!--  				<prop key="hibernate.hbm2ddl.auto">update</prop> -->
+				<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
+				</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="com.rongji.df.entity*,com.rongji.dfish.framework.plugin.entity*" />
+	</bean>
+	<!-- advice -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<!-- 事务处理 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="merge*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="evict*" propagation="REQUIRED" />
+			<tx:method name="executeUpdate*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 静态Bean使用 -->
+	<bean id="txProxyTemplate"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		abstract="true">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="merge*">PROPAGATION_REQUIRED</prop>
+				<prop key="del*">PROPAGATION_REQUIRED</prop>
+				<prop key="evict*">PROPAGATION_REQUIRED</prop>
+				<prop key="executeUpdate*">PROPAGATION_REQUIRED</prop>
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 只对业务逻辑层实施事务 -->
+<!-- 	<aop:config expose-proxy="true"> -->
+<!-- 		<aop:pointcut id="txPointcut1" -->
+<!-- 			expression="execution(* com.rongji.df..dao..*.*(..))" /> -->
+<!-- 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut1" /> -->
+<!-- 	</aop:config> -->
+	<!-- 自定义静态调用DAO，替换dfish原有的PubCommonDAO配置 -->
+<!-- 	<bean id="StaticGenericDao" parent="txProxyTemplate"> -->
+<!-- 		<property name="target"> -->
+<!-- 			<bean class="com.rongji.df.dao.impl.StaticGenericDaoImpl"> -->
+<!-- 				<property name="sessionFactory" ref="sessionFactory" /> -->
+<!-- 			</bean> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+	<!-- 其它数据源配置请参照第一个数据源配置进行复制修改 -->
+
+	<!-- Dfish3.0框架默认需要的DAO，对应名为dataSource那个数据源，多个数据源情况下不用重复配置pubCommonDAO -->
+	<bean id="PubCommonDAO" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.rongji.dfish.framework.dao.PubCommonDAOImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
+
+	<!-- 以下为dfish框架自带缓存和验证码生成器，可根据项目自身情况使用 -->
+	<bean id="cacheFactory"  class="com.rongji.dfish.misc.cache.impl.MemoryCacheFactory">
+		<property name="maxSize" value="8192" />
+		<property name="alive" value="300000" />
+	</bean>
+	
+	<bean id="optionCacheFactory"  class="com.rongji.dfish.misc.cache.impl.MemoryOptionCacheFactory">
+		<property name="maxSize" value="8192" />
+		<property name="alive" value="1800000" />
+	</bean>
+
+	<!-- 验证码生成器 -->
+	<bean id="checkCodeGenerator"  class="com.rongji.dfish.framework.plugin.code.CheckCodeGenerator">
+		<!-- 图片高度 -->
+		<property name="height" value="40" />
+		<!-- 图片宽度 -->
+		<property name="width" value="80" />
+		<!-- 验证码数量 -->
+		<property name="codeLength" value="4" />
+		<!-- 字母旋转度 -->
+		<property name="rotateDegree" value="20" />
+		<!-- 是否需要干扰线 -->
+		<property name="interfering" value="true" />
+	</bean>
+
+</beans>

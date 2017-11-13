@@ -1,0 +1,40 @@
+.x-top{
+	background-color:#39F;
+}
+.x-top .x-main-title{
+	font-size:20px;
+	line-height:40px;
+	font-weight:bold;
+	color:#FFF;
+}
+
+.x-menu{
+	background-color:#EFF;
+}
+
+.x-welcome{
+	padding:12px;
+	font-size:16px;
+	color:#999;
+}
+
+.x-grid-del {
+	background: url("./img/menu_nav_16_16.png") -140px -160px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	display:inline-block;
+}
+.x-grid-adduser {
+	background: url("./img/menu_nav_16_16.png") -340px -80px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	display:inline-block;
+}
+.x-grid-del-dis {
+	background: url("./img/menu_nav_16_16.png") -140px -180px;
+	width: 16px;
+	height: 16px;
+	display:inline-block;
+}

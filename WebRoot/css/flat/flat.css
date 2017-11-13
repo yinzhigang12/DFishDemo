@@ -1,0 +1,224 @@
+/**********flat.css鎵佸钩鍖栫毊鑲ら�鐢ㄦ牱寮�*********/
+
+.btn{height:30px;font-size:14px;background:#99a8b8;color:#fff;border-radius:4px}
+.btn ._c{padding-left:18px}
+.btn ._t,.btn ._i{padding-right:18px}
+.btn ._m{width:26px}
+.btn ._m .f-arw{border-top-color:#fff;margin-right:2px}
+.btn.z-ds,.btn.btn-main.z-ds{color:#99a8b8;background:#edf4f7;cursor:default}
+.btn.z-ds ._m .f-arw{border-top-color:#99a8b8}
+.btn.z-combo ._c{margin-right:27px}
+.btn.z-combo ._t{padding-right:15px}
+.btn.z-combo ._m{border-left:1px solid #fff}
+.btn.z-normal.z-hv,.btn.z-more.z-hv,.btn.z-combo ._c.z-hv,.btn.z-combo ._m.z-hv{background:#8396a9;z-index:1}
+.btn.z-normal.z-dn,.btn.z-more.z-dn,.btn.z-combo ._c.z-dn,.btn.z-combo ._m.z-dn,.btn.z-more.z-snap,.btn.z-combo.z-snap ._m{background:#6e8094;z-index:1}
+.btn.w-submit{background:#53cfa5;color:#fff}
+.btn.z-normal.w-submit.z-hv,.btn.z-more.w-submit.z-hv,.btn.z-combo.w-submit ._c.z-hv,.btn.z-combo.w-submit ._m.z-hv{background:#63dcb3}
+.btn.z-normal.w-submit.z-dn,.btn.z-more.w-submit.z-dn,.btn.z-combo.w-submit ._c.z-dn,.btn.z-combo.w-submit ._m.z-dn,.btn.z-more.w-submit.z-snap,.btn.z-combo.w-submit.z-snap ._m{background:#45be95}
+.btn.z-on{background:#596e85}
+.btn.z-on.z-hv,.btn.z-on.z-combo ._c.z-hv,.btn.z-on.z-combo ._m.z-hv{background:#4d6177}
+.groupbar .btn{border-radius:0}
+.groupbar .btn.z-first{border-top-left-radius:4px;border-bottom-left-radius:4px}
+.groupbar .btn.z-last{border-top-right-radius:4px;border-bottom-right-radius:4px}
+.groupbar ._vr{display:none}
+
+.btn.btn-main{background:#18b4ed;color:#fff}
+.btn.btn-main.z-normal.z-hv,.btn.btn-main.z-more.z-hv,.btn.btn-main.z-combo ._c.z-hv,.btn.btn-main.z-combo ._m.z-hv{background:#39c5f8}
+.btn.btn-main.z-normal.z-dn,.btn.btn-main.z-more.z-dn,.btn.btn-main.z-combo ._c.z-dn,.btn.btn-main.z-combo ._m.z-dn,.btn.btn-main.z-more.z-snap,.btn.btn-main.z-combo.z-snap ._m{background:#1094c6}
+
+.dlg-std-head {
+	background: #39ABFF;
+}
+/**杈撳叆妗�*/
+.w-input {
+	border-color:#CCC;
+	border-radius:0;
+}
+.x-input-empty .w-input.z-empty{
+	/* background-color: #fef; */
+}
+
+.x-bg-title {
+	background: #2498FD;
+}
+
+.x-bg-body {
+	background-color: #EEE;
+}
+.x-bg-split {
+	background-color: #DDD;
+}
+
+.x-bd-body {
+	border: 1px solid #E7E7E7;
+}
+
+.x-bd-content {
+	border: 1px solid #CCC;
+}
+
+.x-bd-item {
+	border: 1px solid #DDD;
+}
+
+.x-bd-mtitle {
+	border: 1px solid #DDD;
+}
+
+.x-bd-split {
+	border: 1px solid #DDD;
+}
+
+.x-bd-btn {
+	border: 1px solid #DDD;
+}
+
+.x-bd-orgsearch {
+	border: 1px solid #DDD;
+}
+
+.x-bd-cand {
+	border: 1px solid #3298fe;
+}
+
+/**婊氬姩鏉�*/
+.f-scroll-x .f-scroll-x-track {
+	border-radius:0;
+}
+.f-scroll-y .f-scroll-y-track {
+	border-radius:0;
+}
+
+/**铏氱嚎**/
+.x-bd-dashed {
+	border: 1px dashed #CCC;
+}
+/**input鍙屽嚮鍓嶅線缁存姢**/
+.w-input.x-input-forward {
+	background-color: #def !important;
+}
+
+/**menuCommand**/
+.w-menu {
+	border-radius: 0;
+	border-color: #CCC;
+}
+
+/**toggle**/
+.x-tog {
+	border-bottom: 1px dashed #DDD;
+	color: #2898fd;
+	font-size: 16px;
+	height: 32px;
+	line-height: 32px;
+}
+.x-tog ._ico{margin-left:10px}
+.x-tog-icon {
+	width: 16px;
+	height: 16px;
+	background: url("./img/btn-icon.png") -29px -265px;
+}
+.x-tog-openicon {
+	width: 16px;
+	height: 16px;
+	background: url("./img/btn-icon.png") -29px -246px;
+}
+/**toggle**/
+
+.x-btn-search {
+	background: url("./img/ico_16_16.png") 0px -16px;
+	width: 16px;
+	height: 16px;
+}
+.x-btn-search:hover {
+	background: url("./img/ico_16_16.png") -16px -16px;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+.x-folder{
+	background: url("./img/ico_16_16.png") 0px -64px;
+	width: 16px;
+	height: 16px;
+}
+.x-folder-open{
+	background: url("./img/ico_16_16.png") -16px -64px;
+	width: 16px;
+	height: 16px;
+}
+/**split鍒嗛殧绗�*/
+.x-split {
+	background: url("./img/ico_split.png") 0 0;
+	width: 10px;
+	height: 30px;
+	position:relative;
+}
+.x-split:hover {
+	background: url("./img/ico_split.png") 0 -30px;
+	width: 10px;
+	height: 30px;
+}
+.x-split-open {
+	background: url("./img/ico_split.png") -30px 0;
+	width: 10px;
+	height: 30px;
+	position:relative;
+}
+.x-split-open:hover {
+	background: url("./img/ico_split.png") -30px -30px;
+	width: 10px;
+	height: 30px;
+}
+
+/**鍒楄〃鎿嶄綔鍥炬爣**/
+
+/*鍙*/
+.x-grid-visable {
+	background: url("./img/btn-icon.png") -28px -164px;
+	width: 18px;
+	height: 16px;
+	cursor: pointer;
+	display:inline-block;
+}
+.x-grid-invisable {
+	background: url("./img/btn-icon.png") -28px -148px;
+	width: 18px;
+	height: 16px;
+	cursor: pointer;
+	display:inline-block;
+}
+.x-readonly-visable {
+	background: url("./img/btn-icon.png") -28px -164px;
+	width: 18px;
+	height: 16px;
+	display:inline-block;
+}
+.x-readonly-invisable {
+	background: url("./img/btn-icon.png") -28px -148px;
+	width: 18px;
+	height: 16px;
+	display:inline-block;
+}
+
+/*绌轰綅*/
+.x-grid-none {
+	width: 18px;
+	height: 18px;
+	cursor: pointer;
+}
+
+.x-btn-sel {
+	background: url("./img/btn-icon.png") -25px -208px;
+	width: 20px;
+	height: 16px;
+}
+
+.x-btn-selbar {
+	color: grey;
+}
+
+/**缁勭粐浜哄憳鏍峰紡**/
+a.popup {
+	color:#000000;
+}
+

@@ -1,0 +1,137 @@
+/**
+管理中心皮肤
+**/
+.x-nav-title {
+	background-color: #2498FD;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+}
+
+.x-tab-bar {
+	height: 42px;
+}
+
+.x-tab-bar .w-buttonbar-line {
+	display: block;
+	height: 2px;
+	background: #2898fd;
+}
+
+.x-tab {
+	background: #EEE;
+	margin-right: 3px;
+	color: #333333;
+}
+
+.x-tab.z-on {
+	background: #2898fd;
+	color: #fff;
+}
+
+.x-text-highlight {
+	color: #F08A24;
+}
+
+.x-right-top {
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #ddd;
+}
+
+.x-right-top .x-right-title {
+	margin: 15px 0;
+	height: 20px;
+	line-height: 20px;
+	font-size: 18px;
+	border-left: 3px solid #2898fd;
+	padding-left: 5px;
+}
+
+.x-right-top .x-right-title .x-right-remark {
+	font-size: 14px;
+}
+
+.x-process {
+	margin: 5px 5px 0px 0px;
+	background: #DDD;
+	height: 10px;
+	line-height: 10px;
+	border-radius: 6px;
+}
+
+.x-process .x-process-on {
+	height: 10px;
+	background: #f08a24;
+	border-radius: 6px;
+}
+
+.x-btn {
+	height: 28px;
+	min-width: 56px;
+	font-size: 14px;
+	background: #FFF;
+	border: 1px solid #DDD;
+}
+
+.x-btn.x-btn-main,.w-alert .x-btn.w-submit {
+	background: #2498FD;
+	color: #FFF;
+}
+
+.x-btn.x-btn-main.z-ds {
+	background: #fff;
+	color: #aaa;
+}
+
+.x-btn.x-btn-main .f-arw {
+	border-top-color: #fff;
+}
+
+.x-btn.x-btn-main.z-ds .f-arw {
+	border-top-color: #aaa;
+}
+
+.x-main-title {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.x-grid-head {
+	background-color: #E7F3FF;
+}
+
+.x-grid-odd .z-0 {
+	background-color: #FFF;
+}
+
+.x-grid-odd .z-1 {
+	background-color: #F8F8F8;
+}
+
+.x-grid-odd .w-tr.z-on{ 
+	background-color: #B0D3EB;
+}
+
+.x-grid-odd .w-grid-tbody .w-tr:hover {
+	background-color: #CCE3F2;
+}
+
+.x-pagebar ._o{
+	border-color:#ddd;
+	cursor:not-allowed;
+}
+.x-pagebar ._o.z-us{
+	cursor: pointer;
+	color: #333;
+}
+.x-pagebar ._o.z-us:hover{
+	border-color:#ddd;
+	color: white;
+	background: #2898FD;
+}
+.x-pagebar ._o._cur{
+	cursor: pointer;
+	color: white;
+	background: #2898FD;
+}

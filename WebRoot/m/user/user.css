@@ -1,0 +1,39 @@
+@charset "utf-8";
+.face-box { width:120px; height:160px; overflow:hidden;padding-left:20px; float:left;padding-top:20px;}
+.face-box img { width:100%;}
+.info-box { float:left; margin-left:10px; width:265px;padding-top:20px;}
+.info-box div i{
+	width: 25px;
+	height: 25px;
+	background: url(img/info_iocn.jpg) no-repeat;
+}
+.info-box ul{
+	float:right;
+}
+.info-box  div i.show1{
+	float:left;
+	background-position: 0 2px;
+	
+}
+.info-box  div i.show2{
+	float:left;
+	background-position: 0 -28px;
+	
+}
+.info-box  div i.show3{
+	float:left;
+	background-position: 0 -58px;
+	
+}
+.info-box  div i.show4{
+	float:left;
+	background-position: 0 -88px;
+	
+}
+.info-box  div p{
+	 margin: 10px 0;
+	/*height: 25px;*/
+	padding-left:5px;
+	font-size:13px;
+	line-height: 20px;
+}

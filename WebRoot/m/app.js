@@ -1,0 +1,1 @@
+window.index   = require( './first/first.js' );
