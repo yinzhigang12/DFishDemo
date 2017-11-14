@@ -1,5 +1,7 @@
 package com.rongji.df.web.controller;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -119,19 +121,33 @@ public class IndexController extends BaseController {
 		String type = request.getParameter("type");
 		CommandGroup cg = new CommandGroup();
 		ReplaceCommand rc = new ReplaceCommand();
-		cg.add(rc);
 		
-		View mainView = new View("main").setStyle("margin:0px 10px 10px 10px;");
+		View mainView = new View("main").setStyle("margin:50px 10px 10px 10px;");
 		ReplaceCommand rc2 = new ReplaceCommand();
+		Html three = new Html("three_menu","").setStyle("margin-left:5px;margin-right:0px;");
 		switch(type)
 		{
 			case "101"://用户管理
+				String[] children = {"用户管理","角色管理","角色组管理"};
+				String text = createThreeMenu(children);
+				three.setText(text);
+				three.setHeight("31");
+				rc.setNode(three);
+				cg.add(rc);
+//				mainView.add(new Html(text).setStyle("margin-left:5px;margin-right:0px;"));
 				mainView.setSrc("userManager/index");
 				rc2.setNode(mainView);
 				cg.add(rc2);
 				break;
 			case "102"://系统日志
-				
+				String[] children2 = {"登陆日志","操作日志"};
+				String text2 = createThreeMenu(children2);
+				three.setText(text2);
+				three.setHeight("31");
+				rc.setNode(three);
+//				mainView.setSrc("loginLogMgt/index");
+//				rc2.setNode(mainView);
+				cg.add(rc2);
 				break;
 			case "103"://在线管理
 				
@@ -262,5 +278,21 @@ public class IndexController extends BaseController {
 	public Object logout(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
 		return null;
+	}
+	
+	public String createThreeMenu(String[] menus)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("<div id='three_menu_div' class='three_menu_bar_class'>");
+		int index = 1;
+		for(String m:menus)
+		{
+			sb.append("<div name='index_threeMenu' class='"+(index==1?"three_menu_check":"three_menu_class")+"' >");
+			sb.append("<span class='three_menu_name'>"+m+"</span>");
+			sb.append("</div>");
+			index++;
+		}
+		sb.append("</div>");
+		return sb.toString();
 	}
 }
