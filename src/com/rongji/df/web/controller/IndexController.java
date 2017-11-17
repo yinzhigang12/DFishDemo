@@ -77,6 +77,21 @@ public class IndexController extends BaseController {
 				mainView.setSrc("chargemakeinvoice/welcome");
 				break;
 			case "3"://口岸卫检
+				menuBar = new AlbumLayout("f_menu").setCls("w-album-ynbiq");
+				menuBar.setHoverable(true);
+				menuBar.setFocusable(true);
+				menuBar.add(new Img("img/menu/sysmgt/back.png").setOn(Img.EVENT_CLICK,"this.cmd({type:'ajax',src:'index/appJump?type=0'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/imp_channel.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=301'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/exp_channel.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=302'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/m_reg.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=303'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/qrcode_mgt.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=304'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/trans_reg.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=305'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/nuclear.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=306'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/cert_print.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=307'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/h/q_stat.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=308'});").setHeight(60).setWidth(60));
+				
+				
+				rc.setNode(menuBar);
 				mainView.setSrc("portrelatived/welcome");
 				break;
 			case "4"://跨境电商
@@ -86,6 +101,19 @@ public class IndexController extends BaseController {
 				mainView.setSrc("regulation/welcome");
 				break;
 			case "6"://车辆检疫
+				menuBar = new AlbumLayout("f_menu").setCls("w-album-ynbiq");
+				menuBar.setHoverable(true);
+				menuBar.setFocusable(true);
+				menuBar.add(new Img("img/menu/sysmgt/back.png").setOn(Img.EVENT_CLICK,"this.cmd({type:'ajax',src:'index/appJump?type=0'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/v/vehicle.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=601'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/v/i_channel.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=602'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/v/m_reg.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=603'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/v/iq_mgt.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=604'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/v/m_fee.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=605'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/v/fee_mgt.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=606'});").setHeight(60).setWidth(60));
+				menuBar.add(new Img("img/menu/v/q_stat.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/sysJump?type=607'});").setHeight(60).setWidth(60));
+				
+				rc.setNode(menuBar);
 				mainView.setSrc("cardquarantine/welcome");
 				break;
 			case "7"://通知通告
