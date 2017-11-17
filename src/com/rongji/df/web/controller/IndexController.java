@@ -117,7 +117,7 @@ public class IndexController extends BaseController {
 				mainView.setSrc("cardquarantine/welcome");
 				break;
 			case "7"://通知通告
-				mainView.setSrc("notemessage/welcome");
+				mainView.setSrc("notemessage/buildIndex?flag=0");
 				break;
 			default://返回首页
 				menuBar = new AlbumLayout("f_menu").setCls("w-album-ynbiq");

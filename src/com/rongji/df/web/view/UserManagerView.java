@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.rongji.df.entity.SmDepartment;
+import com.rongji.df.entity.SmUser;
 import com.rongji.dfish.ui.Scrollable;
 import com.rongji.dfish.ui.form.Checkbox;
 import com.rongji.dfish.ui.form.Select;
@@ -19,6 +21,7 @@ import com.rongji.dfish.ui.layout.grid.GridColumn;
 import com.rongji.dfish.ui.layout.grid.Tr;
 import com.rongji.dfish.ui.widget.Button;
 import com.rongji.dfish.ui.widget.Html;
+import com.rongji.dfish.ui.widget.Leaf;
 import com.rongji.dfish.ui.widget.Split;
 import com.rongji.dfish.ui.widget.SubmitButton;
 import com.rongji.dfish.ui.widget.TreePanel;
@@ -28,7 +31,7 @@ import edu.emory.mathcs.backport.java.util.Arrays;
 @Component
 public class UserManagerView {
 
-	public View index()
+	public View index(String loginId,SmDepartment dept,List<SmUser> users)
 	{
 		View view = new View().setCls("index_view");
 		HorizontalLayout treeRoot = new HorizontalLayout("tree_user_root");
@@ -36,7 +39,7 @@ public class UserManagerView {
 		VerticalLayout left = new VerticalLayout("dept_left");
 		treeRoot.add(left,"300");
 		TreePanel tree = new TreePanel("dept_user_tree");
-		buildDeptTree(tree,null);
+		buildDeptTree(tree,dept);
 		left.add(tree,"*");
 		treeRoot.add(new Split().setCls("split_view"),"10");
 		VerticalLayout root = new VerticalLayout("root");
@@ -51,14 +54,15 @@ public class UserManagerView {
 		searchBar.add(new Button("","重置").setOn(Button.EVENT_CLICK, "VM(this).cmd('reset')").setCls("cancle_button"));
 		searchPanel.add(searchBar,"*");
 		ButtonBar buttonBar = new ButtonBar("buttonBar").setCls("t_bar");
-		fillButtons(buttonBar,1);
+		fillButtons(buttonBar,loginId);
 		root.add(buttonBar,"28");
 		fillCommands(view);
 		GridPanel grid = new GridPanel("user_grid");
-		fillGrid(grid);
-		
+		String depId = dept == null ? "":dept.getDepId()+"";
+		fillGrid(grid,users,depId);
 		root.add(grid,"*");
-				
+		root.add(new Html("&nbsp;&nbsp;注意：灰色数据表示该用户在局端OA办公系统上已被禁用，要想启用该用户，必须先在OA办公系统上启用，然后在本系统上启用即可。"),"25");
+		
 		return view;
 	}
 	
@@ -78,7 +82,7 @@ public class UserManagerView {
 		form.getPrototype().getColumns().get(0).setWidth("40");
 	}
 	
-	public void fillButtons(ButtonBar bar,int loginId)
+	public void fillButtons(ButtonBar bar,String loginId)
 	{
 		SubmitButton setRole = new SubmitButton("","用户授权").setOn(SubmitButton.EVENT_CLICK, "VM(this).cmd('setRoleJS')").setCls("normal_button");
 		bar.add(setRole);
@@ -93,10 +97,27 @@ public class UserManagerView {
 		
 	}
 	
-	public void fillGrid(GridPanel grid)
+	public void fillGrid(GridPanel grid,List<SmUser> users,String depId)
 	{
 		grid.setCls("grid_panel");
 		List<Object[]> datas = new ArrayList<Object[]>();
+		if(users != null && users.size()>0)
+		{
+			int index = 1;
+			for(SmUser user : users)
+			{
+				Integer useStatu = user.getUserStatu();
+				String status = user.getStatus();
+				String showStatus = "0".equals(status) ? "内置":"1".equals(status)?"在岗":"离职";
+				if(useStatu == 0)
+				{
+					datas.add(new Object[]{user.getUserId(),cc(showStatus),cc(user.getLoginName()),cc(user.getEmpName()),cc(user.getSex()),cc(user.getJobTitle()),cc(user.getRoleNames()),cc(user.getTel()),cc(user.getUserStatu()=1?"启用":"禁用"),user.getDepId(),cc("<b>"+index+"</b>")});
+				}else{
+					datas.add(new Object[]{user.getUserId(),showStatus,user.getLoginName(),user.getEmpName(),user.getSex(),user.getJobTitle(),user.getRoleNames(),user.getTel(),user.getUserStatu()==1?"启用":"禁用",user.getDepId(),"<b>"+index+"</b>"});
+				}
+				index++;
+			}
+		}
 		
 		grid.setScroll(true);
 		grid.setEscape(false);
@@ -123,8 +144,24 @@ public class UserManagerView {
 		grid.getPrototype().getThead().setCls("grid_panel_head");
 	}
 	
-	public void buildDeptTree(TreePanel tree,String str)
+	public String cc(String v)
+	{
+		if(v == null || "".equals(v))
+		{
+			return "";
+		}
+		return "<font style='color:lightgray;'>"+v+"</font>";
+	}
+	
+	public void buildDeptTree(TreePanel tree,SmDepartment rootDep)
 	{
 		tree.setStyle("margin:6px;border:1px solid #CCC;").setScroll(true).setHmin(14).setWmin(14);
+		if(rootDep != null)
+		{
+			Leaf root = new Leaf(rootDep.getDepId()+"",rootDep.getDepName());
+			root.setOpen(true);
+			root.setSrc("userManager/treeOpen?parentId="+rootDep.getDepId());
+			root.setOn(Leaf.EVENT_CLICK, "VM(this).cmd('showUsers','"+rootDep.getDepId()+"')");
+		}
 	}
 }
