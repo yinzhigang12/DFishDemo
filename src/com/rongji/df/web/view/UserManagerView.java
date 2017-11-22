@@ -111,7 +111,7 @@ public class UserManagerView {
 				String showStatus = "0".equals(status) ? "内置":"1".equals(status)?"在岗":"离职";
 				if(useStatu == 0)
 				{
-					datas.add(new Object[]{user.getUserId(),cc(showStatus),cc(user.getLoginName()),cc(user.getEmpName()),cc(user.getSex()),cc(user.getJobTitle()),cc(user.getRoleNames()),cc(user.getTel()),cc(user.getUserStatu()=1?"启用":"禁用"),user.getDepId(),cc("<b>"+index+"</b>")});
+					datas.add(new Object[]{user.getUserId(),cc(showStatus),cc(user.getLoginName()),cc(user.getEmpName()),cc(user.getSex()),cc(user.getJobTitle()),cc(user.getRoleNames()),cc(user.getTel()),cc(user.getUserStatu()==1?"启用":"禁用"),user.getDepId(),cc("<b>"+index+"</b>")});
 				}else{
 					datas.add(new Object[]{user.getUserId(),showStatus,user.getLoginName(),user.getEmpName(),user.getSex(),user.getJobTitle(),user.getRoleNames(),user.getTel(),user.getUserStatu()==1?"启用":"禁用",user.getDepId(),"<b>"+index+"</b>"});
 				}
