@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rongji.df.common.CacheDataService;
+import com.rongji.df.common.UserInfoForm;
 import com.rongji.dfish.base.Utils;
 
 public class RoleAndPermsUtils {
@@ -223,7 +224,44 @@ public class RoleAndPermsUtils {
 	
 	public static String getQueryHqlByACScope(String resourceId,UserInfoForm user,String orgIdFieldName,String depIdFieldName,String empIdFieldName)
 	{
+		if(user == null)
+		{
+			return "noPerm";
+		}
+		String acScope = getQueryScope(user.getUserId()+"",resourceId);
+		String where ="";
 		
+		if(ALL.equals(acScope))
+		{
+			
+		}else if(ORG.equals(acScope))
+		{
+			where = " and "+orgIdFieldName +" = "+user.getOrgId();
+		}else if(ORG_AND_CHILD.equals(acScope))
+		{
+			String levelCode = (user.getOrgLevelCode() == null || user.getOrgLevelCode().length() == 0 ? "":user.getOrgLevelCode())+"/"+user.getOrgId();
+			where = " and "+"("+orgIdFieldName+" in(select depId from SmDepartment where levelCode like '"+levelCode+"%') or "+orgIdFieldName+ "="+user.getOrgId()+")";
+		}else if(DEP.equals(acScope))
+		{
+			if(Utils.notEmpty(depIdFieldName))
+			{
+				where = " and "+depIdFieldName+ " = "+user.getDepId();
+			}else{
+				where = "noPerm";
+			}
+		}else if(OWNER.equals(acScope))
+		{
+			if(Utils.notEmpty(empIdFieldName))
+			{
+				where = " and "+empIdFieldName+" = "+user.getUserId();
+			}else{
+				where = "noPerm";
+			}
+		}else if("".equals(acScope))
+		{
+			where = "noPerm";
+		}
+		return where;
 	}
 
 }

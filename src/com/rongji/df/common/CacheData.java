@@ -9,6 +9,7 @@ import java.util.Set;
 
 import com.rongji.df.dao.StaticGenericDao;
 import com.rongji.df.dao.StaticGenericDaoUtil;
+import com.rongji.df.util.RoleAndPermsUtils;
 import com.rongji.dfish.base.Utils;
 
 public class CacheData {
@@ -285,7 +286,7 @@ public class CacheData {
 	private static final byte[] CACHE_ID_TO_NAME_USER = new byte[0];
 	private static Map<String, String> userDataId2Name = null;
 	private static final byte[] CACHE_ID_V_DEPT = new byte[0];
-	private static Map<String, String> userDeptMap = null;
+	private static Map<String, String[]> userDeptMap = null;
 	public String[] getUserDeptById(String userId)
 	{
 		ensureUserDept(userId);
@@ -301,7 +302,7 @@ public class CacheData {
 			{
 				if(userDeptMap == null)
 				{
-					userDeptMap = new HashMap<String, String>();
+					userDeptMap = new HashMap<String, String[]>();
 					StaticGenericDao dao = StaticGenericDaoUtil.getDAO();
 					List<Object> ls = (List<Object>)dao.getQueryList("select userId,depId,depName from SmUser");
 					if(ls != null && ls.size() > 0)
@@ -752,6 +753,20 @@ public class CacheData {
 		}
 	}
 	
+	public void clearBtInspectionEntAllInfo()
+	{
+		if(BtInspectionEntAllInfo != null)
+		{
+			synchronized(BT_INSPECTION_ENT_ALL)
+			{
+				if(BtInspectionEntAllInfo != null)
+				{
+					BtInspectionEntAllInfo = null;
+				}
+			}
+		}
+	}
+	
 	private static final byte[] BT_INSPECTION_ENT = new byte[0];
 	private static Map<String,List<Object>> BtInspectionEntInfo = null;
 	public List<Object> getBtInspectionEntInfoById(String id)
@@ -934,12 +949,6 @@ public class CacheData {
 	{
 		ensureSmCountryRegion(null);
 		return smCountryRegion;
-	}
-	
-	public Object[] getCountryByCodeOrAlias(String value)
-	{
-		ensureSmCountryRegion(value);
-		return smCountryName.get(value);
 	}
 	
 	public Object[] getCountryByCodeOrAlias(String value)
