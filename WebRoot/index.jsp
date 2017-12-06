@@ -33,8 +33,8 @@ dfish.init( {
 		'confirm': { btncls: 'x-btn' }
 	},
 	view: { // 如果配置了此参数，将生成全屏的view
-		id: 'first',
-     	src: 'first/index'
+		id: 'index',
+     	src: 'index/index'
 	},
 	// 一个汉字算2个字节
 	cn_bytes: 2,

@@ -30,6 +30,11 @@ public class CacheDataService {
 		CacheData.getInstance().clearRoleDataId2Name();
 	}
 	
+	public static String getDepNameById(String depId)
+	{
+		return CacheData.getInstance().getDepNameById(depId);
+	}
+	
 	public static String getUserNameById(String userId)
 	{
 		return CacheData.getInstance().getUserNameById(userId);

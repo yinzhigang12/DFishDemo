@@ -115,19 +115,19 @@
 		</property>
 	</bean>
 	<!-- 只对业务逻辑层实施事务 -->
-<!-- 	<aop:config expose-proxy="true"> -->
-<!-- 		<aop:pointcut id="txPointcut1" -->
-<!-- 			expression="execution(* com.rongji.df..dao..*.*(..))" /> -->
-<!-- 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut1" /> -->
-<!-- 	</aop:config> -->
+	<aop:config expose-proxy="true">
+		<aop:pointcut id="txPointcut1"
+			expression="(execution(* com.rongji.df..dao..*.*(..))) or (execution(* com.rongji.df..service..*.*(..))) or (execution(* com.rongji.df.timer..impl..*.*(..)))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut1" />
+	</aop:config>
 	<!-- 自定义静态调用DAO，替换dfish原有的PubCommonDAO配置 -->
-<!-- 	<bean id="StaticGenericDao" parent="txProxyTemplate"> -->
-<!-- 		<property name="target"> -->
-<!-- 			<bean class="com.rongji.df.dao.impl.StaticGenericDaoImpl"> -->
-<!-- 				<property name="sessionFactory" ref="sessionFactory" /> -->
-<!-- 			</bean> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
+	<bean id="StaticGenericDao" parent="txProxyTemplate">
+		<property name="target">
+			<bean class="com.rongji.df.dao.impl.StaticGenericDaoImpl">
+				<property name="sessionFactory" ref="sessionFactory" />
+			</bean>
+		</property>
+	</bean>
 
 	<!-- 其它数据源配置请参照第一个数据源配置进行复制修改 -->
 

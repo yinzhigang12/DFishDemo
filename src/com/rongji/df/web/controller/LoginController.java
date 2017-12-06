@@ -1,5 +1,7 @@
 package com.rongji.df.web.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,8 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.rongji.df.web.view.LoginView;
+import com.rongji.df.entity.SmMenu;
+import com.rongji.df.entity.SmUser;
+import com.rongji.df.util.Md5Util;
+import com.rongji.df.web.service.MenuService;
+import com.rongji.df.web.service.UserManagerService;
 import com.rongji.df.web.view.IndexView;
+import com.rongji.dfish.framework.FrameworkHelper;
 import com.rongji.dfish.framework.controller.BaseController;
+import com.rongji.dfish.ui.command.CommandGroup;
 import com.rongji.dfish.ui.command.DialogCommand;
 import com.rongji.dfish.ui.command.JSCommand;
 import com.rongji.dfish.ui.command.ReplaceCommand;
@@ -21,6 +30,12 @@ import com.rongji.dfish.ui.widget.Html;
 @RequestMapping("/first")
 public class LoginController extends BaseController{
 
+	@Resource
+	private UserManagerService userManagerService;
+	
+	@Resource
+	private MenuService menuService;
+	
 	@Resource
 	private LoginView loginView;
 	
@@ -59,29 +74,37 @@ public class LoginController extends BaseController{
 		String remindUName = request.getParameter("remindUName");
 		String remindPwd = request.getParameter("remindPwd");
 		
-		showPreInfo(loginName,password);
-
-		if(loginName.equals("admin")  && password.equals("123456"))
+		SmUser user = userManagerService.getUserByLoginName(loginName);
+		String epwd = Md5Util.getMD5ofStr(password);
+		
+		if(user == null)
 		{
-			JSCommand redirect = new JSCommand("window.location.replace(\"./index.jsp\")");
-			return redirect;
-		}else{
 			ReplaceCommand rc = new ReplaceCommand();
 			Label tip = new Label("","");
-			tip.setId("tip").setText("用户名或密码错误").setStyle("color:red;padding-top:10px;");
+			tip.setId("tip").setText("用户名或密码错误").setStyle("color:red;");
+			rc.setNode(tip);
+			return rc;
+		}else if(!user.getPassword().equals(epwd))
+		{
+			ReplaceCommand rc = new ReplaceCommand();
+			Label tip = new Label("","");
+			tip.setId("tip").setText("用户名或密码错误").setStyle("color:red;");
 			rc.setNode(tip);
 			return rc;
 		}
-	}
-	
-	private Object showPreInfo(String user,String password)
-	{
-		DialogCommand dialog = new DialogCommand("showInfo","std","查看登陆信息","400","200",0,null);
-		dialog.setCover(true);
-		dialog.setMaxheight(200);
-		dialog.setMaxwidth(400);
-		dialog.setNode(new Html("用户名："+user+",密码："+password));
-		return dialog;
+		if(0 == user.getUserStatu() || user.getUserStatu() == 0)
+		{
+			ReplaceCommand rc = new ReplaceCommand();
+			Label tip = new Label("","");
+			tip.setId("tip").setText("该账号已被禁用").setStyle("color:red;");
+			rc.setNode(tip);
+			return rc;
+		}
+		CommandGroup cg = new CommandGroup();
+		request.getSession().setAttribute(FrameworkHelper.LOGIN_USER_KEY, user.getUserId()+"");
+		JSCommand redirect = new JSCommand("window.location.replace(\"./index.jsp\")");
+		cg.add(redirect);
+		return cg;
 	}
 	
 	/**
@@ -95,7 +118,10 @@ public class LoginController extends BaseController{
 	@ResponseBody
 	public Object indexView(HttpServletRequest request,HttpServletResponse response) throws Exception
 	{
-		return indexView.buildIndexView();
+		String loginUser = (String)request.getSession().getAttribute(FrameworkHelper.LOGIN_USER_KEY);
+		SmUser user = userManagerService.getUserById(Integer.parseInt(loginUser));
+		List<SmMenu> menus = menuService.getRootMenus(loginUser);
+		return indexView.buildIndexView(user,menus);
 	}
 	
 	

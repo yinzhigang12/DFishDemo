@@ -1,7 +1,5 @@
 package com.rongji.df.web.controller;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.rongji.df.entity.SmMenu;
+import com.rongji.df.entity.SmUser;
+import com.rongji.df.web.service.MenuService;
+import com.rongji.df.web.service.UserManagerService;
 import com.rongji.df.web.view.IndexView;
 import com.rongji.dfish.base.Page;
 import com.rongji.dfish.base.Utils;
@@ -32,7 +34,30 @@ import com.rongji.dfish.ui.widget.Img;
 public class IndexController extends BaseController {
 
 	@Resource
+	private UserManagerService userService;
+	
+	@Resource
+	private MenuService menuService;
+	
+	@Resource
 	private IndexView view;
+	
+	/**
+	 * 加载主页
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/index")
+	@ResponseBody
+	public Object indexView(HttpServletRequest request,HttpServletResponse response) throws Exception
+	{
+		String loginUser = (String)request.getSession().getAttribute(FrameworkHelper.LOGIN_USER_KEY);
+		SmUser user = userService.getUserById(Integer.parseInt(loginUser));
+		List<SmMenu> menus = menuService.getRootMenus(loginUser);
+		return view.buildIndexView(user,menus);
+	}
 	/**
 	 * 加载菜单按钮
 	 * @param request
@@ -43,7 +68,9 @@ public class IndexController extends BaseController {
 	@ResponseBody
 	public Object appJump(HttpServletRequest request) throws Exception
 	{
+		String loginUser = (String) request.getSession().getAttribute(FrameworkHelper.LOGIN_USER_KEY);
 		String type = request.getParameter("type");
+		String menuCode = request.getParameter("menuCode");
 		
 		CommandGroup cg = new CommandGroup();
 		ReplaceCommand rc = new ReplaceCommand();

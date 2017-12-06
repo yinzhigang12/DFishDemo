@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.rongji.df.common.CacheDataService;
+import com.rongji.df.entity.SmMenu;
+import com.rongji.df.entity.SmUser;
 import com.rongji.dfish.base.Page;
 import com.rongji.dfish.ui.Scrollable;
 import com.rongji.dfish.ui.command.CommandGroup;
@@ -40,7 +43,7 @@ import com.rongji.dfish.ui.widget.TemplateView;
 @Service
 public class IndexView {
 
-	public Object buildIndexView()
+	public Object buildIndexView(SmUser user,List<SmMenu> menus)
 	{
 		View view = new View();
 		VerticalLayout root = new VerticalLayout("f_root");
@@ -54,8 +57,20 @@ public class IndexView {
 		String topLogoHtml = "<img style='float:left;padding:3px 0 0 40px;' src='img/menu/ynbiq2017_logo_1.png' height='85%'/>";
 		topBanner.add(new Html(topLogoHtml),"450");
 		
+		String uuid = CacheDataService.getDeptUUID(user.getDepId()+"");
+		String supName = "";
+		if(uuid.length()== 6)
+		{
+			supName = null;
+		}else if(uuid.length()>6)
+		{
+			String supUUID = uuid.substring(0,6);
+			supName = CacheDataService.getDepNameById(CacheDataService.getOrgCodeDepId(supUUID));
+		}
+		topBanner.add(new Html((supName== null?"":supName+" - ")+CacheDataService.getDepNameById(user.getDepId()+"")).setStyle("color:#ffffff;padding-top:3px;text-align:right;"),"*");
+		
 		ButtonBar userProfileBar = new ButtonBar("loginBar").setStyle("color:#FFF;").setWmin(10);
-		Button btnLogin = new Button(".user-profile","显示用户名").setTip("显示用户名").setWidth(110);
+		Button btnLogin = new Button(".user-profile",user.getEmpName()).setTip(user.getEmpName()).setWidth(110);
 		userProfileBar.add(btnLogin);
 		btnLogin.setHoverdrop(true);
 		btnLogin.add(new Button("个人信息").setOn(Button.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/personInfo'});"));
@@ -70,13 +85,19 @@ public class IndexView {
 		AlbumLayout menuBar = new AlbumLayout("f_menu").setCls("w-album-ynbiq");
 		menuBar.setHoverable(true);
 		menuBar.setFocusable(true);
-		menuBar.add(new Img("img/menu/sys_mgt.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/appJump?type=1'});").setHeight(60).setWidth(60));
-		menuBar.add(new Img("img/menu/billing.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/appJump?type=2'});").setHeight(60).setWidth(60));
-		menuBar.add(new Img("img/menu/h_iq.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/appJump?type=3'});").setHeight(60).setWidth(60));
-		menuBar.add(new Img("img/menu/kjds.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/appJump?type=4'});").setHeight(60).setWidth(60));
-		menuBar.add(new Img("img/menu/s_record_sup.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/appJump?type=5'});").setHeight(60).setWidth(60));
-		menuBar.add(new Img("img/menu/v_iq.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/appJump?type=6'});").setHeight(60).setWidth(60));
-		menuBar.add(new Img("img/menu/s_notice.png").setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'index/appJump?type=7'});").setHeight(60).setWidth(60));
+		
+		if(menus != null)
+		{
+			for(SmMenu menu : menus)
+			{
+				String url = "index/appJump?type=1&menuCode="+menu.getMenuId();
+				if(menu.getMenuUrl() != null)
+				{
+					url = menu.getMenuUrl();
+				}
+				menuBar.add(new Img(menu.getImageUrl()).setOn(Img.EVENT_CLICK, "this.cmd({type:'ajax',src:'"+url+"'});").setHeight(60).setWidth(60));
+			}
+		}
 		
 		menuOne.add(menuBar);
 		top.add(menuOne,"75");
